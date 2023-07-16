@@ -19,21 +19,27 @@ p {
 }
 
 img {
-    max-width: 100%;
+    max-width: 636px;
     display: block;
     margin: 0 auto;
 }
 
 h1 {
+    text-align: left;
+    font-family: 'Castoro';
     font-size: 128px;
+    font-weight: 400;
+    line-height: 192px;
     letter-spacing: 0.12em;
 }
 h2 {
+    font-family: 'Castoro';
     font-size: 128px;
     font-weight: 400;
+    line-height: 192px;
     letter-spacing: 0.12em;
-    text-align: end;
-    margin-right: 150px;
+    text-align: right;
+    padding-right: 150px;
 }
 
 .intro {
@@ -42,24 +48,36 @@ h2 {
 }
 .intro_txt {
     width: 636px;
-    margin-left: 50%;
+    height: 432px;
+    margin-left: auto;
 }
 .intro p {
-    line-height: 1.8;
+    font-family: 'Castoro';
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 .info_box {
     width: 636px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .info_box h3 {
+    font-family: 'Castoro';
     font-size: 40px;
+    font-weight: 400;
+    line-height: 60px;
+    letter-spacing: 0em;
+    text-align: left;
     color: #ae0000;
 }
 .info {
     border-bottom: #ae0000 3px solid;
+    margin-top: 50px;
 }
 .info_p {
     margin-top: 20px;
@@ -71,6 +89,7 @@ h2 {
 }
 
 .footer {
+    margin-top: 100px;
     display: flex;
     background: #000;
 }
