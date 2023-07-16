@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+}
+/*  box-sizing  */
+
+body {
+    font-family: 'Castoro', serif;
+    line-height: 1.5;
+    font-size: 24px;
+}
+
+p {
+    font-family: 'Castoro';
+}
+
+.container {
+    max-width: 1296px; /* 使用 max-width 可以自適應瀏覽器畫面寬度*/
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 128px;
+    letter-spacing: 0.12em;
+}
+h2 {
+    font-size: 128px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-align: end;
+    margin-right: 150px;
+}
+
+.intro {
+    background: #efefef;
+    padding: 50px 0 50px 0;
+}
+.intro_txt {
+    width: 636px;
+    margin-left: 50%;
+}
+.intro p {
+    line-height: 1.8;
+}
+
+.info_box {
+    width: 636px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info_box h3 {
+    font-size: 40px;
+    color: #ae0000;
+}
+.info {
+    border-bottom: #ae0000 3px solid;
+}
+.info_p {
+    margin-top: 20px;
+}
+
+.span {
+    font-size: 20px;
+    color: #949494;
+}
+
+.footer {
+    display: flex;
+    background: #000;
+}
+
+.footer a {
+    margin-top: 50px;
+    padding: 25px 10px 25px 10px;
+    display: inline-block;
+}
+.footer img {
+    width: 64px;
+    height: 64px;
+}
