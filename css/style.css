@@ -13,6 +13,10 @@ p {
     font-family: 'Castoro';
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
 .container {
     max-width: 1296px; /* 使用 max-width 可以自適應瀏覽器畫面寬度*/
     margin: 0 auto;
@@ -28,15 +32,11 @@ h1 {
     text-align: left;
     font-family: 'Castoro';
     font-size: 128px;
-    font-weight: 400;
-    line-height: 192px;
     letter-spacing: 0.12em;
 }
 h2 {
     font-family: 'Castoro';
     font-size: 128px;
-    font-weight: 400;
-    line-height: 192px;
     letter-spacing: 0.12em;
     text-align: right;
     padding-right: 150px;
@@ -48,7 +48,6 @@ h2 {
 }
 .intro_txt {
     width: 636px;
-    height: 432px;
     margin-left: auto;
 }
 .intro p {
@@ -57,13 +56,12 @@ h2 {
     font-weight: 400;
     line-height: 2;
     letter-spacing: 0em;
-    text-align: left;
 }
 
 .info_box {
     width: 636px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .info_box h3 {
@@ -77,21 +75,18 @@ h2 {
 }
 .info {
     border-bottom: #ae0000 3px solid;
-    margin-top: 50px;
-}
-.info_p {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.span {
+span {
     font-size: 20px;
     color: #949494;
 }
 
 .footer {
     margin-top: 100px;
-    display: flex;
     background: #000;
+    text-align: center;
 }
 
 .footer a {
