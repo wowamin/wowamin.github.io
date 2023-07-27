@@ -4,9 +4,13 @@
 /*  box-sizing  */
 
 body {
-    font-family: 'Castoro', serif;
+    font-family: 'Castoro';
     line-height: 1.5;
     font-size: 24px;
+}
+/* vertical-align:middle;	圖片垂直對齊該行文字的置中位置 */
+img {
+    vertical-align: middle;
 }
 
 p {
@@ -17,54 +21,75 @@ a {
     text-decoration: none;
     color: #000;
 }
+
+a:hover {
+    opacity: 0.8;
+}
+
+.mt-160 {
+    margin-top: 160px;
+}
 .container {
     max-width: 1296px; /* 使用 max-width 可以自適應瀏覽器畫面寬度*/
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-img {
+.img {
     max-width: 636px;
     display: block;
-    margin: 0 auto;
 }
 
-h1 {
-    text-align: left;
-    font-family: 'Castoro';
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-1 {
     font-size: 128px;
     letter-spacing: 0.12em;
 }
-h2 {
+.title-2 {
     font-family: 'Castoro';
     font-size: 128px;
     letter-spacing: 0.12em;
     text-align: right;
-    padding-right: 150px;
+    padding-right: 5px;
 }
-
-.intro {
+/* 灰色背景區塊 */
+.bg-gray {
     background: #efefef;
-    padding: 50px 0 50px 0;
 }
-.intro_txt {
+/* .intro_txt {
     width: 636px;
     margin-left: auto;
-}
-.intro p {
-    font-family: 'Castoro';
+    line-height: 1.5;
+} */
+.text-m {
     font-size: 32px;
-    font-weight: 400;
-    line-height: 2;
-    letter-spacing: 0em;
 }
 
-.info_box {
+.w-50 {
+    width: 50%;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mb-80 {
+    margin-bottom: 80px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+/* .info_box {
     width: 636px;
     margin-top: 50px;
     margin-bottom: 50px;
-}
+} */
 
-.info_box h3 {
+/* .info_box h3 {
     font-family: 'Castoro';
     font-size: 40px;
     font-weight: 400;
@@ -72,29 +97,48 @@ h2 {
     letter-spacing: 0em;
     text-align: left;
     color: #ae0000;
-}
-.info {
+} */
+.title {
+    font-size: 40px;
+    color: #ae0000;
     border-bottom: #ae0000 3px solid;
-    margin-bottom: 20px;
 }
 
-span {
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.year {
+    font-style: italic;
     font-size: 20px;
     color: #949494;
 }
 
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mb-160 {
+    margin-bottom: 160px;
+}
+.mb-12 {
+    margin-bottom: 12px;
+}
+
 .footer {
-    margin-top: 100px;
-    background: #000;
+    padding: 64px 0 64px 0;
+    background-color: #000;
     text-align: center;
 }
 
-.footer a {
-    margin-top: 50px;
-    padding: 25px 10px 25px 10px;
+.footer-item {
     display: inline-block;
 }
-.footer img {
-    width: 64px;
-    height: 64px;
+
+.mr-40 {
+    margin-right: 40px;
 }
