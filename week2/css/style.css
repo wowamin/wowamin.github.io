@@ -107,7 +107,7 @@ body {
 
 .introduction {
     height: 920px;
-    background-image: url(/img/background-img.png);
+    background-image: url(/week2/img/background-img.png);
     /* display: flex; */
     margin-bottom: 160px;
 }
@@ -234,8 +234,48 @@ body {
 .myprojects h2 {
     font-size: 64px;
     text-align: right;
+    margin-right: 220px;
 }
 
-.picpic {
-    display: flex;
+.ml-50 {
+    margin-left: 50px;
+}
+
+.rect15img {
+    margin-right: 50px;
+}
+
+.aboutme .seemore {
+    background-color: #000;
+    color: #fff;
+}
+
+.aboutme p {
+    width: 636px;
+    height: 72px;
+    font-size: 16px;
+}
+
+.mr-24 {
+    margin-right: 24px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+
+.rect10 {
+    width: 416px;
+    height: 530px;
+}
+
+.rect15 {
+    width: 196px;
+    height: 196px;
+}
+.rect14 {
 }
