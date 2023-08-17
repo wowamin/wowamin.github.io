@@ -107,7 +107,7 @@ body {
 
 .introduction {
     height: 920px;
-    background-image: url(/week2/img/background-img.png);
+    background-image: url(https://github.com/hexschool/2022-web-layout-training/blob/main/2023week2/background-img.png?raw=true);
     /* display: flex; */
     margin-bottom: 160px;
 }
