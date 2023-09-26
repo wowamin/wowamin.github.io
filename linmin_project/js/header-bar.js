@@ -24,10 +24,10 @@ nav.innerHTML = `
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.instagram.com/wowminwowhoho/" target="_blank">攝影</a>
+                                <a class="nav-link" href="ttps://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">攝影</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.instagram.com/skyskyq55/" target="_blank">繪畫</a>
+                                <a class="nav-link" href="https://instagram.com/skyskyq55?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">繪畫</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 網頁設計 </a>
