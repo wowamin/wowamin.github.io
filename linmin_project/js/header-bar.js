@@ -23,9 +23,15 @@ nav.innerHTML = `
                                     <li><a class="dropdown-item" href="https://simplemin125.wixsite.com/minlin125/projects-2" target="_blank">DM設計</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">攝影</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 攝影 </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">IG攝影集</a></li>
+                                    <li><a class="dropdown-item" href="#" target="_blank">商業攝影</a></li>
+                                    <li><a class="dropdown-item" href="#" target="_blank">活動攝影</a></li>
+                                </ul>
                             </li>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="https://instagram.com/skyskyq55?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">繪畫</a>
                             </li>
