@@ -31,6 +31,10 @@ nav.innerHTML = `
                                     <li><a class="dropdown-item" href="#" target="_blank">活動攝影</a></li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                            <a class="nav-link" href="https://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">攝影 </a>
+                        </li>
                             
                             <li class="nav-item">
                                 <a class="nav-link" href="https://instagram.com/skyskyq55?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">繪畫</a>
