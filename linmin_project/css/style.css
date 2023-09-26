@@ -1,0 +1,54 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    color: #5a5a5a;
+}
+
+/* header menu*/
+.nav-item a:hover {
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    width: 20rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+.wrap{
+    max-width: 960px;
+  }
+  .header {
+    height: 80px;
+  }
+  .list li{
+    width: 33%;
+  }
+  .list h3{
+    font-size: 24px;
+  }
+  @media(max-width: 768px){
+    .header{
+      height: auto;
+    }
+    .list li{
+      width: 48%;
+      margin: 0 1%;
+    }
+  }
+  @media(max-width: 767px){
+    .list li{
+      width: 98%;
+    }
+  }
+  @media(max-width: 414px){
+    .list li{
+      font-size: 18px;
+    }
+  }
+  
