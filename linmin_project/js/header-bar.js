@@ -24,7 +24,7 @@ nav.innerHTML = `
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="ttps://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">攝影</a>
+                                <a class="nav-link" href="https://instagram.com/wowminwowho?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">攝影</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://instagram.com/skyskyq55?igshid=OGQ5ZDc2ODk2ZA==" target="_blank">繪畫</a>
