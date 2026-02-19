@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給小球的生日祝福募集</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  background: #dce8e3;
+}
+
+/* ===== Header Banner ===== */
+.hero {
+  width: 100%;
+}
+
+.hero img {
+  width: 100%;
+  display: block;
+}
+
+/* ===== 瀑布流區塊 ===== */
+.gallery {
+  column-count: 3;
+  column-gap: 24px;
+  padding: 40px 30px;
+}
+
+@media (max-width: 900px) {
+  .gallery { column-count: 2; }
+}
+@media (max-width: 600px) {
+  .gallery { column-count: 1; }
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  break-inside: avoid;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: rotate(-1deg);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.card:hover {
+  transform: scale(1.03) rotate(0deg);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.card-content {
+  padding: 10px 6px 6px;
+}
+
+.card-content h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 這裡放你的 Banner -->
+<div class="hero">
+  <img src="https://u.fmyeah.com/i111/699710d658beb.png" alt="給小球的生日祝福募集">
+</div>
+
+<!-- 💛 瀑布流祝福牆 -->
+<div class="gallery">
+
+  <div class="card">
+    <img src="https://picsum.photos/600/700?1">
+    <div class="card-content">
+      <h3>來自小美</h3>
+      <p>謝謝妳帶給我們滿滿的能量 ❤️</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/600/500?2">
+    <div class="card-content">
+      <h3>阿豪</h3>
+      <p>願妳每一年都閃閃發光 ✨</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/600/600?3">
+    <div class="card-content">
+      <h3>匿名粉絲</h3>
+      <p>#給小球的生日祝福</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" id="lightbox-img">
+</div>
+
+<script>
+const cards = document.querySelectorAll(".card img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+cards.forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.classList.add("active");
+    lightboxImg.src = img.src;
+  });
+});
+
+lightbox.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
+</script>
+
+</body>
+</html>
