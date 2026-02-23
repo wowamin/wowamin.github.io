@@ -45,7 +45,21 @@ body {
 .hero img {
   width: 100%;
   display: block;
+  margin-bottom: 20px;
+
 }
+
+.happy-bd {
+  width: min(100%, 1024px);
+  margin: 0 auto;
+}
+
+.happy-bd__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 
 /* ===== 瀑布流區塊 ===== */
 .gallery {
