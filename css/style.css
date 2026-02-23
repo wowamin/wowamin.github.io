@@ -71,6 +71,17 @@ body {
   }
 }
 
+/* 手機版 (375px 以下) */
+@media (max-width: 375x) {
+  .gallery {
+    column-count: 1;
+    padding: 20px 15px;
+  }
+  .banner-hbd {
+    height: 600px; /* 手機版不宜太高，讓使用者能直接看到音樂與卡片 */
+  }
+}
+
 
 .music {
   display: flex;
