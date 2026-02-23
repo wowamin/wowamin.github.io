@@ -4,6 +4,12 @@ body {
   font-family: "Noto Sans TC", sans-serif;
   background: #dce8e3;
 }
+
+.warp{
+  margin: 0 auto;
+  max-width: 1980px;
+}
+
 /* ===== Header Banner ===== */
 
 .header { 
@@ -36,22 +42,12 @@ body {
 }
 
 
-
-
-.hero {
-  width: 100%;
-}
-
-.hero img {
-  width: 100%;
-  display: block;
-  margin-bottom: 20px;
-
-}
-
 .happy-bd {
-  width: min(100%, 1024px);
+  width: min(100%, 1980px);
+  height: 600px;
   margin: 0 auto;
+  
+
 }
 
 .happy-bd__img {
@@ -59,6 +55,13 @@ body {
   width: 100%;
   height: auto;
 }
+
+.music {
+  display: flex;
+  justify-content: center;
+}
+
+
 
 
 /* ===== 瀑布流區塊 ===== */
@@ -125,14 +128,41 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 999;
+  gap: 20px;
 }
 
 .lightbox img {
-  max-width: 90%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 12px;
 }
 
 .lightbox.active {
   display: flex;
+}
+
+.lightbox-btn {
+  border: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  color: #111;
+  font-size: 28px;
+  line-height: 44px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.lightbox-btn:hover {
+  background: rgba(255,255,255,1);
+  transform: scale(1.05);
+}
+
+.lightbox-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
