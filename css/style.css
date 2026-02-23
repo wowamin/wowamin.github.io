@@ -41,19 +41,36 @@ body {
   border-radius: 5px;
 }
 
-
 .happy-bd {
-  width: min(100%, 1980px);
-  height: 600px;
+  width: 100%;
+  max-width: 1980px;
   margin: 0 auto;
-  
-
+  aspect-ratio: 1980 / 600;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: #dce8e3;
+  border-radius: 12px;
 }
+
+@media (max-width: 1280px) {
+  .happy-bd { aspect-ratio: 1980 / 700; }
+}
+
+@media (max-width: 768px) {
+  .happy-bd { aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 375px) {
+  .happy-bd { aspect-ratio: 7 / 3; }
+}
+
+
 
 .happy-bd__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .music {
