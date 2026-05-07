@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>午餐吃什麼？台南午餐靈感轉盤</title>
+  <style>
+    :root {
+      --bg: #fff8ec;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #2d241f;
+      --muted: #78675f;
+      --primary: #f47b3f;
+      --primary-dark: #c95728;
+      --accent: #ffd166;
+      --green: #2f9e7e;
+      --shadow: 0 18px 45px rgba(111, 66, 34, 0.16);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.45), transparent 28%),
+        radial-gradient(circle at 86% 12%, rgba(244, 123, 63, 0.2), transparent 28%),
+        linear-gradient(135deg, #fff8ec 0%, #fff1dd 52%, #ffe3d2 100%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .hero-card,
+    .picker-card,
+    .category-card {
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card {
+      padding: clamp(28px, 5vw, 56px);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin: 0 0 18px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: rgba(244, 123, 63, 0.12);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.08em;
+    }
+
+    .hero-card p {
+      max-width: 650px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    button,
+    .chip {
+      border: 0;
+      font: inherit;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #ff9d5c);
+      box-shadow: 0 12px 26px rgba(244, 123, 63, 0.32);
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(244, 123, 63, 0.38);
+    }
+
+    .ghost-btn,
+    .chip {
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(244, 123, 63, 0.22);
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .picker-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+      padding: 28px;
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(255, 246, 229, 0.86)),
+        radial-gradient(circle at top right, rgba(47, 158, 126, 0.18), transparent 40%);
+    }
+
+    .result-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-name {
+      margin: 26px 0 12px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .result-meta {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #0f6b52;
+      background: rgba(47, 158, 126, 0.14);
+      font-weight: 800;
+    }
+
+    .result-desc {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 28px;
+    }
+
+    .chip.active {
+      color: #fff;
+      border-color: transparent;
+      background: var(--green);
+      box-shadow: 0 10px 20px rgba(47, 158, 126, 0.18);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .category-card {
+      padding: 26px;
+    }
+
+    .category-card h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .food-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .food-item {
+      padding: 15px 16px;
+      border: 1px solid rgba(120, 103, 95, 0.12);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.64);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .food-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 123, 63, 0.34);
+      background: #fff;
+    }
+
+    .food-name {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .food-desc {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 24px;
+      border: 2px dashed rgba(244, 123, 63, 0.25);
+      border-radius: var(--radius);
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .footer-note {
+      margin: 28px 0 0;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        width: min(100% - 22px, 720px);
+        padding-top: 24px;
+      }
+
+      .hero,
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-card">
+        <p class="eyebrow">🍽️ 午休救星 · 台南口袋名單</p>
+        <h1 id="page-title">午餐吃什麼？</h1>
+        <p>把便當、麵食、小吃與有氣氛的商務午餐整理成一頁。點一下隨機推薦，或用分類篩選，今天中午不用再開會討論半小時。</p>
+        <div class="hero-actions">
+          <button class="primary-btn" type="button" id="randomBtn">幫我決定今天吃什麼 🎲</button>
+          <button class="ghost-btn" type="button" id="resetBtn">顯示全部名單</button>
+        </div>
+      </div>
+
+      <aside class="picker-card" aria-live="polite">
+        <div>
+          <div class="result-label">
+            <span>今日推薦</span>
+            <span id="resultCount">50 間選擇</span>
+          </div>
+          <h2 class="result-name" id="resultName">佳味美食便當</h2>
+          <span class="result-meta" id="resultCategory">🍱 經典便當與排餐</span>
+          <p class="result-desc" id="resultDesc">金華路巷內排隊名店，烤雞腿與燒肉是人氣王。</p>
+        </div>
+        <button class="primary-btn" type="button" id="rerollBtn">換一家！</button>
+      </aside>
+    </section>
+
+    <nav class="filters" aria-label="午餐分類篩選">
+      <button class="chip active" type="button" data-filter="all">全部</button>
+      <button class="chip" type="button" data-filter="經典便當與排餐">🍱 經典便當與排餐</button>
+      <button class="chip" type="button" data-filter="麵食、水餃與鍋燒">🍜 麵食、水餃與鍋燒</button>
+      <button class="chip" type="button" data-filter="飽足感熱炒、粥品與小吃">🥟 熱炒、粥品與小吃</button>
+      <button class="chip" type="button" data-filter="商務午餐、老宅與異國料理">☕ 商務、老宅與異國料理</button>
+    </nav>
+
+    <section class="category-grid" id="categoryGrid" aria-label="午餐清單"></section>
+    <p class="empty-state" id="emptyState">這個分類目前沒有資料，請切回全部名單看看。</p>
+    <p class="footer-note">小提醒：熱門店午餐時段容易完售，便當與炒飯類建議先電話預訂，才不會餓著回辦公室。</p>
+  </main>
+
+  <script>
+    const categories = [
+      {
+        title: "🍱 經典便當與排餐",
+        key: "經典便當與排餐",
+        items: [
+          ["佳味美食便當", "金華路巷內排隊名店，烤雞腿與燒肉是人氣王。"],
+          ["Oba歐巴便當", "文華市場內，配菜清爽，炸雞腿份量大。"],
+          ["鳳嬤燥喀", "原阿嬤燥咖，爌肉飯滷得透徹，環境整潔。"],
+          ["阿鳳排骨飯", "五妃街老店，招牌排骨與大雞腿午餐時段極快售罄。"],
+          ["脆皮鴨肉飯", "50 元銅板價，鴨皮脆嫩，隱身巷弄。"],
+          ["周氏鱻魚湯", "除了魚湯，紅糟肉飯盒深受上班族喜愛。"],
+          ["家成便當", "菜色變化豐富，辦公室團訂常勝軍。"],
+          ["東部鐵路飯包", "經典池上風格，出餐速度極快。"],
+          ["雙好燒臘", "份量紮實，推薦三寶飯。"],
+          ["可口排骨快餐", "老牌排骨飯，古早味調味。"],
+          ["北京烤鴨(金華路)", "也有提供個人份的鴨肉便當。"],
+          ["永欣嫩骨飯", "嫩骨飯入口即化，口味鮮甜。"],
+          ["青鳥屋便當", "主打清爽型便當，適合不想午休太沉重的上班族。"],
+          ["正忠排骨飯", "大品牌穩定度高，停車相對方便。"],
+          ["池上木片便當(新興店)", "飯粒Q彈。"]
+        ]
+      },
+      {
+        title: "🍜 麵食、水餃與鍋燒",
+        key: "麵食、水餃與鍋燒",
+        items: [
+          ["盧家麵食", "又稱里長乾麵，水餃與滷味便宜到令人驚訝。"],
+          ["閒情茗品屋", "電影《想見你》取景地，鍋燒意麵與烤餐包是經典組合。"],
+          ["施家小卷米粉", "湯頭清甜，不必到國華街排隊也能吃到高品質小卷。"],
+          ["金門館", "大林商圈必吃炒餅與酸辣湯，份量驚人。"],
+          ["國棟麵店", "市場老味道，滷味種類極多且入味。"],
+          ["韋家乾麵", "麵條Q勁十足，自製辣油是一絕。"],
+          ["盛櫻鍋燒麵", "黑麻醬麵香氣濃郁。"],
+          ["鍋醬平價小火鍋", "中午想吃點熱騰騰的火鍋，這間 CP 值很高。"],
+          ["饌滿小廚", "主打煙燻鴨肉與拉麵。"],
+          ["50刀削牛肉麵", "出餐快，內用加麵不加價。"],
+          ["王家古早味意麵", "傳統鹹水意麵，搭配手工肉燥。"],
+          ["大岡山羊肉", "當歸湯頭溫潤，炒羊肉下飯。"],
+          ["池鱔魚意麵", "鑊氣十足，鱔魚大片爽口。"],
+          ["新興路無名虱目魚湯", "在地人午餐首選，魚肚粥鮮美。"],
+          ["京肴燒肉飯", "燒肉帶有碳烤香。"]
+        ]
+      },
+      {
+        title: "🥟 飽足感熱炒、粥品與小吃",
+        key: "飽足感熱炒、粥品與小吃",
+        items: [
+          ["文慶現炒/炒飯", "炒飯粒粒分明，番茄蝦仁炒飯是招牌。"],
+          ["用心炒 a 炒飯", "新興路排隊店，建議先預訂。"],
+          ["您貴焿", "浮水魚羹與碗粿，清爽無負擔。"],
+          ["阿輝黑輪", "黑輪、米血與甜不辣，適合想吃輕便午餐的人。"],
+          ["水交社無名水煎包", "皮薄餡多，適合當作簡單午餐。"],
+          ["向日葵美食", "老闆親切，炒飯與魚肚湯 CP 值高。"],
+          ["魁手作食堂", "日式丼飯與咖哩。"],
+          ["美鮮牛肉湯", "24小時營業，午餐也能來碗現燙牛肉湯。"],
+          ["新榕江沙茶爐", "沙茶香氣逼人，適合多人共食。"],
+          ["夏林蔥油餅", "蔥多酥脆，適合加蛋飽餐一頓。"]
+        ]
+      },
+      {
+        title: "☕ 商務午餐、老宅與異國料理",
+        key: "商務午餐、老宅與異國料理",
+        items: [
+          ["漫漫弄 (man.man.nong)", "老工廠改建，環境美，餐點精緻。"],
+          ["我們家 (Our House)", "溫馨的中式簡餐，每日主菜不同。"],
+          ["大林壽司", "成大周邊延伸至大林商圈的好口碑壽司。"],
+          ["旅享所在", "老宅風格，無五辛咖哩飯非常出色。"],
+          ["順順料理所", "日式定食，適合放慢腳步午餐。"],
+          ["食上主義餐酒館", "雖然是餐酒館，但中午也提供高品質義大利麵。"],
+          ["南邦泰式料理", "泰式個人套餐，口味地道。"],
+          ["阿地牛排", "懷舊台式牛排。"],
+          ["Oro Coffee 竹溪", "環境優雅，適合商務會談。"],
+          ["左鄰右舍中日式簡餐", "老字號簡餐店，適合不想思考直接點餐的場合。"]
+        ]
+      }
+    ];
+
+    const grid = document.querySelector("#categoryGrid");
+    const emptyState = document.querySelector("#emptyState");
+    const resultName = document.querySelector("#resultName");
+    const resultCategory = document.querySelector("#resultCategory");
+    const resultDesc = document.querySelector("#resultDesc");
+    const resultCount = document.querySelector("#resultCount");
+    const chips = document.querySelectorAll(".chip");
+    const allItems = categories.flatMap((category) =>
+      category.items.map(([name, description]) => ({
+        name,
+        description,
+        category: category.key,
+        categoryTitle: category.title
+      }))
+    );
+
+    let currentFilter = "all";
+
+    function render(filter = "all") {
+      grid.innerHTML = "";
+      const visibleCategories = categories
+        .map((category) => ({
+          ...category,
+          items: filter === "all" || filter === category.key ? category.items : []
+        }))
+        .filter((category) => category.items.length > 0);
+
+      visibleCategories.forEach((category) => {
+        const card = document.createElement("article");
+        card.className = "category-card";
+        card.innerHTML = `
+          <h2>${category.title}</h2>
+          <ul class="food-list">
+            ${category.items.map(([name, description]) => `
+              <li class="food-item">
+                <span class="food-name">${name}</span>
+                <span class="food-desc">${description}</span>
+              </li>
+            `).join("")}
+          </ul>
+        `;
+        grid.appendChild(card);
+      });
+
+      const visibleCount = visibleCategories.reduce((sum, category) => sum + category.items.length, 0);
+      resultCount.textContent = `${visibleCount} 間選擇`;
+      emptyState.style.display = visibleCount ? "none" : "block";
+    }
+
+    function pickRandom() {
+      const pool = currentFilter === "all" ? allItems : allItems.filter((item) => item.category === currentFilter);
+      const item = pool[Math.floor(Math.random() * pool.length)];
+
+      if (!item) return;
+      resultName.textContent = item.name;
+      resultCategory.textContent = item.categoryTitle;
+      resultDesc.textContent = item.description;
+    }
+
+    document.querySelector("#randomBtn").addEventListener("click", pickRandom);
+    document.querySelector("#rerollBtn").addEventListener("click", pickRandom);
+    document.querySelector("#resetBtn").addEventListener("click", () => {
+      currentFilter = "all";
+      chips.forEach((chip) => chip.classList.toggle("active", chip.dataset.filter === "all"));
+      render();
+      pickRandom();
+    });
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        currentFilter = chip.dataset.filter;
+        chips.forEach((item) => item.classList.toggle("active", item === chip));
+        render(currentFilter);
+        pickRandom();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
