@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>午餐吃什麼？台南午餐靈感轉盤</title>
+  <style>
+    :root {
+      --bg: #fff7ed;
+      --card: #ffffff;
+      --ink: #2d2018;
+      --muted: #725b4c;
+      --accent: #f97316;
+      --accent-dark: #c2410c;
+      --accent-soft: #ffedd5;
+      --green: #16a34a;
+      --shadow: 0 20px 45px rgba(124, 45, 18, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(251, 146, 60, 0.28), transparent 34rem),
+        radial-gradient(circle at 85% 10%, rgba(253, 186, 116, 0.35), transparent 26rem),
+        linear-gradient(135deg, #fff7ed 0%, #fffbeb 55%, #fef3c7 100%);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 36px;
+    }
+
+    .hero-card,
+    .picker-card,
+    .category {
+      border: 1px solid rgba(194, 65, 12, 0.12);
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card {
+      padding: clamp(28px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "🍜";
+      position: absolute;
+      right: 30px;
+      bottom: -24px;
+      font-size: clamp(92px, 14vw, 168px);
+      opacity: 0.12;
+      transform: rotate(-12deg);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin: 0 0 16px;
+      padding: 7px 14px;
+      color: var(--accent-dark);
+      font-weight: 800;
+      background: var(--accent-soft);
+      border-radius: 999px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 7vw, 78px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      max-width: 660px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 22px);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 10px 16px;
+      color: var(--accent-dark);
+      font-weight: 800;
+      background: #fff7ed;
+      border: 1px solid rgba(249, 115, 22, 0.16);
+      border-radius: 16px;
+    }
+
+    .picker-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 26px;
+    }
+
+    .picker-title {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .result {
+      min-height: 152px;
+      margin: 14px 0 18px;
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #fff7ed, #ffffff);
+      border: 1px dashed rgba(249, 115, 22, 0.35);
+    }
+
+    .result-category {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .result-name {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .result-desc {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      padding: 15px 20px;
+      color: white;
+      font: inherit;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border-radius: 18px;
+      box-shadow: 0 14px 26px rgba(249, 115, 22, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(249, 115, 22, 0.34);
+    }
+
+    .categories {
+      display: grid;
+      gap: 24px;
+    }
+
+    .category {
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .category h2 {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 18px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .food-card {
+      height: 100%;
+      padding: 16px;
+      background: #fffaf4;
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      border-radius: 18px;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .food-card:hover {
+      transform: translateY(-3px);
+      background: #ffffff;
+      border-color: rgba(249, 115, 22, 0.42);
+    }
+
+    .food-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-dark);
+      font-size: 18px;
+    }
+
+    .food-card span {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 24px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .picker-card,
+      .category {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-card">
+        <p class="eyebrow">🍽️ 台南午餐選擇器</p>
+        <h1 id="page-title">午餐吃什麼？</h1>
+        <p class="lead">把便當、麵食、小吃、商務午餐一次整理好。不想動腦時，按一下就幫你抽出今天的午餐靈感。</p>
+        <div class="stats" aria-label="午餐分類統計">
+          <span class="stat">4 大分類</span>
+          <span class="stat">50 間選擇</span>
+          <span class="stat">外帶、內用都適合</span>
+        </div>
+      </div>
+
+      <aside class="picker-card" aria-labelledby="picker-title">
+        <h2 class="picker-title" id="picker-title">今天交給命運吧</h2>
+        <div class="result" id="result" aria-live="polite">
+          <span class="result-category">推薦午餐</span>
+          <h3 class="result-name">按下按鈕抽一家</h3>
+          <p class="result-desc">選擇困難時，讓午餐選擇器幫你快速決定。</p>
+        </div>
+        <button type="button" id="pickButton">幫我決定午餐</button>
+      </aside>
+    </section>
+
+    <section class="categories" id="categories"></section>
+
+    <footer>祝你今天午餐好吃、不踩雷、下午不昏睡。</footer>
+  </main>
+
+  <script>
+    const lunchData = [
+      {
+        icon: "🍱",
+        title: "經典便當與排餐 (外帶首選)",
+        items: [
+          ["佳味美食便當", "金華路巷內排隊名店，烤雞腿與燒肉是人氣王。"],
+          ["Oba歐巴便當", "文華市場內，配菜清爽，炸雞腿份量大。"],
+          ["鳳嬤燥喀", "原阿嬤燥咖，爌肉飯滷得透徹，環境整潔。"],
+          ["阿鳳排骨飯", "五妃街老店，招牌排骨與大雞腿午餐時段極快售罄。"],
+          ["脆皮鴨肉飯", "50 元銅板價，鴨皮脆嫩，隱身巷弄。"],
+          ["周氏鱻魚湯", "除了魚湯，紅糟肉飯盒深受上班族喜愛。"],
+          ["家成便當", "菜色變化豐富，辦公室團訂常勝軍。"],
+          ["東部鐵路飯包", "經典池上風格，出餐速度極快。"],
+          ["雙好燒臘", "份量紮實，推薦三寶飯。"],
+          ["可口排骨快餐", "老牌排骨飯，古早味調味。"],
+          ["北京烤鴨(金華路)", "也有提供個人份的鴨肉便當。"],
+          ["永欣嫩骨飯", "嫩骨飯入口即化，口味鮮甜。"],
+          ["青鳥屋便當", "主打清爽型便當，適合不想午休太沉重的上班族。"],
+          ["正忠排骨飯", "大品牌穩定度高，停車相對方便。"],
+          ["池上木片便當(新興店)", "飯粒Q彈。"]
+        ]
+      },
+      {
+        icon: "🍜",
+        title: "麵食、水餃與鍋燒 (快速內用)",
+        items: [
+          ["盧家麵食", "又稱里長乾麵，水餃與滷味便宜到令人驚訝。"],
+          ["閒情茗品屋", "電影《想見你》取景地，鍋燒意麵與烤餐包是經典組合。"],
+          ["施家小卷米粉", "湯頭清甜，不必到國華街排隊也能吃到高品質小卷。"],
+          ["金門館", "大林商圈必吃炒餅與酸辣湯，份量驚人。"],
+          ["國棟麵店", "市場老味道，滷味種類極多且入味。"],
+          ["韋家乾麵", "麵條Q勁十足，自製辣油是一絕。"],
+          ["盛櫻鍋燒麵", "黑麻醬麵香氣濃郁。"],
+          ["鍋醬平價小火鍋", "中午想吃點熱騰騰的火鍋，這間 CP 值很高。"],
+          ["饌滿小廚", "主打煙燻鴨肉與拉麵。"],
+          ["50刀削牛肉麵", "出餐快，內用加麵不加價。"],
+          ["王家古早味意麵", "傳統鹹水意麵，搭配手工肉燥。"],
+          ["大岡山羊肉", "當歸湯頭溫潤，炒羊肉下飯。"],
+          ["池鱔魚意麵", "鑊氣十足，鱔魚大片爽口。"],
+          ["新興路無名虱目魚湯", "在地人午餐首選，魚肚粥鮮美。"],
+          ["京肴燒肉飯", "燒肉帶有碳烤香。"]
+        ]
+      },
+      {
+        icon: "🥟",
+        title: "飽足感熱炒、粥品與小吃",
+        items: [
+          ["文慶現炒/炒飯", "炒飯粒粒分明，番茄蝦仁炒飯是招牌。"],
+          ["用心炒 a 炒飯", "新興路排隊店，建議先預訂。"],
+          ["您貴焿", "浮水魚羹與碗粿，清爽無負擔。"],
+          ["阿輝黑輪", "黑輪、米血與甜不辣，適合想吃輕便午餐的人。"],
+          ["水交社無名水煎包", "皮薄餡多，適合當作簡單午餐。"],
+          ["向日葵美食", "老闆親切，炒飯與魚肚湯 CP 值高。"],
+          ["魁手作食堂", "日式丼飯與咖哩。"],
+          ["美鮮牛肉湯", "24小時營業，午餐也能來碗現燙牛肉湯。"],
+          ["新榕江沙茶爐", "沙茶香氣逼人，適合多人共食。"],
+          ["夏林蔥油餅", "蔥多酥脆，適合加蛋飽餐一頓。"]
+        ]
+      },
+      {
+        icon: "☕",
+        title: "商務午餐、老宅與異國料理 (有氣氛)",
+        items: [
+          ["漫漫弄 (man.man.nong)", "老工廠改建，環境美，餐點精緻。"],
+          ["我們家 (Our House)", "溫馨的中式簡餐，每日主菜不同。"],
+          ["大林壽司", "成大周邊延伸至大林商圈的好口碑壽司。"],
+          ["旅享所在", "老宅風格，無五辛咖哩飯非常出色。"],
+          ["順順料理所", "日式定食，適合放慢腳步午餐。"],
+          ["食上主義餐酒館", "雖然是餐酒館，但中午也提供高品質義大利麵。"],
+          ["南邦泰式料理", "泰式個人套餐，口味地道。"],
+          ["阿地牛排", "懷舊台式牛排。"],
+          ["Oro Coffee 竹溪", "環境優雅，適合商務會談。"],
+          ["左鄰右舍中日式簡餐", "老字號簡餐店，適合不想思考直接點餐的場合。"]
+        ]
+      }
+    ];
+
+    const categories = document.querySelector("#categories");
+    const allItems = lunchData.flatMap((category) =>
+      category.items.map(([name, description]) => ({
+        category: `${category.icon} ${category.title}`,
+        name,
+        description
+      }))
+    );
+
+    categories.innerHTML = lunchData.map((category) => `
+      <article class="category">
+        <h2><span>${category.icon}</span>${category.title}</h2>
+        <ul class="food-grid">
+          ${category.items.map(([name, description]) => `
+            <li>
+              <article class="food-card">
+                <strong>${name}</strong>
+                <span>${description}</span>
+              </article>
+            </li>
+          `).join("")}
+        </ul>
+      </article>
+    `).join("");
+
+    document.querySelector("#pickButton").addEventListener("click", () => {
+      const item = allItems[Math.floor(Math.random() * allItems.length)];
+      document.querySelector("#result").innerHTML = `
+        <span class="result-category">${item.category}</span>
+        <h3 class="result-name">${item.name}</h3>
+        <p class="result-desc">${item.description}</p>
+      `;
+    });
+  </script>
+</body>
+</html>
