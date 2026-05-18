@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox 迴轉壽司道場</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="game-title">
+        <div class="hero-copy-block">
+          <p class="eyebrow">CSS Flexbox Learning Game</p>
+          <h1 id="game-title"><span>Flexbox</span> 迴轉壽司道場</h1>
+          <p class="hero-copy">
+            走進紅白招牌的平價迴轉壽司店，用 Flexbox 指令操控輸送帶，把每盤壽司送到客人的指定位置。
+            完成 10 個關卡，從 <code>justify-content</code>、<code>align-items</code> 到
+            <code>flex-direction</code> 一次練熟！
+          </p>
+          <div class="promo-strip" aria-label="遊戲特色">
+            <span>每盤 CSS $30</span>
+            <span>10 道任務</span>
+            <span>即時對位</span>
+          </div>
+        </div>
+        <div class="shop-hero" aria-label="紅白風格迴轉壽司店插圖與目前關卡進度">
+          <div class="shop-sign">
+            <span class="sign-mark">鮮</span>
+            <strong>鮮速迴轉</strong>
+            <small>SUSHI TRAIN</small>
+          </div>
+          <div class="awning"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="shop-window">
+            <div class="chef">👨‍🍳</div>
+            <div class="mini-belt"><span class="mini-sushi salmon"></span><span class="mini-sushi ebi"></span><span class="mini-sushi tamago"></span></div>
+            <div class="price-card">均一價<br /><b>$30</b></div>
+          </div>
+          <div class="lantern left">壽</div>
+          <div class="lantern right">司</div>
+          <div class="score-card" aria-live="polite">
+            <span>目前關卡</span>
+            <strong><span id="levelNow">1</span>/<span id="levelTotal">10</span></strong>
+            <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-grid">
+        <aside class="panel mission-panel" aria-labelledby="mission-title">
+          <div class="panel-heading">
+            <span class="badge">任務單</span>
+            <h2 id="mission-title">讀取中…</h2>
+          </div>
+          <p id="missionText" class="mission-text"></p>
+          <div class="hint-box">
+            <button id="hintBtn" type="button" class="ghost-button">顯示提示</button>
+            <p id="hintText" class="hint-text" hidden></p>
+          </div>
+          <div class="level-list" id="levelList" aria-label="選擇關卡"></div>
+        </aside>
+
+        <section class="stage-card" aria-labelledby="stage-title">
+          <div class="stage-topbar">
+            <h2 id="stage-title">迴轉輸送帶</h2>
+            <div class="legend" aria-label="圖例">
+              <span><i class="target-dot"></i>目標</span>
+              <span><i class="sushi-dot"></i>壽司</span>
+            </div>
+          </div>
+
+          <div class="counter" id="counter">
+            <div class="shop-label" aria-hidden="true">ORDER PICK-UP</div>
+            <div class="seat-row" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <div class="targets" id="targets" aria-hidden="true"></div>
+            <div class="belt" id="belt" aria-label="可被 Flexbox 控制的壽司輸送帶"></div>
+          </div>
+          <p class="status" id="status" role="status" aria-live="polite">輸入 CSS 後按下「送出答案」。</p>
+        </section>
+
+        <section class="panel editor-panel" aria-labelledby="editor-title">
+          <div class="panel-heading">
+            <span class="badge">CSS 編輯器</span>
+            <h2 id="editor-title">控制 .belt</h2>
+          </div>
+          <pre class="code-frame"><code>.belt {
+  display: flex;
+</code><textarea id="codeInput" spellcheck="false" aria-label="輸入 Flexbox CSS 宣告"></textarea><code>}</code></pre>
+          <div class="actions">
+            <button id="checkBtn" type="button">送出答案</button>
+            <button id="resetBtn" type="button" class="secondary-button">重設</button>
+          </div>
+          <div class="quick-props" aria-label="快速插入 CSS 屬性">
+            <button type="button" data-snippet="justify-content: center;">justify-content</button>
+            <button type="button" data-snippet="align-items: center;">align-items</button>
+            <button type="button" data-snippet="flex-direction: row-reverse;">flex-direction</button>
+            <button type="button" data-snippet="gap: 32px;">gap</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="sushiTemplate">
+      <div class="sushi" role="img"><span class="plate"></span><span class="rice"><span class="topping"></span><span class="face">◕‿◕</span></span></div>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
