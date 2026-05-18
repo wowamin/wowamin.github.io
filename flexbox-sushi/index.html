@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>迴轉壽司 Flexbox 遊戲</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header class="hero">
+            <nav class="topbar" aria-label="遊戲資訊">
+                <a class="brand" href="#game">🍣 Flex Sushi</a>
+                <a class="skip-link" href="#controls">直接前往操作面板</a>
+            </nav>
+            <div class="hero__content">
+                <p class="eyebrow">用 CSS 排好壽司盤</p>
+                <h1>迴轉壽司 Flexbox 遊戲</h1>
+                <p class="hero__lead">調整 Flexbox 屬性，讓每一盤壽司精準抵達客人的點餐位置。從 <code>justify-content</code> 到 <code>flex-wrap</code>，邊玩邊學版面配置。</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="#game">開始挑戰</a>
+                    <a class="button button--ghost" href="#how-to-play">玩法說明</a>
+                </div>
+            </div>
+        </header>
+
+        <main id="game" class="game-layout">
+            <section class="panel panel--lesson" aria-labelledby="level-title">
+                <div class="level-meta">
+                    <span id="level-badge" class="level-badge">第 1 關</span>
+                    <span id="level-score" class="level-score">0 / 8 顆星</span>
+                </div>
+                <h2 id="level-title">把玉子燒送到右邊客人</h2>
+                <p id="level-story" class="level-story">右側客人已經坐好，請把壽司盤推到輸送帶尾端。</p>
+                <div class="hint-card">
+                    <strong>今日師傅提示</strong>
+                    <p id="level-hint">主軸是從左到右，想把項目推到尾端可以改變 <code>justify-content</code>。</p>
+                </div>
+                <div class="progress-track" aria-label="關卡進度">
+                    <div id="progress-bar" class="progress-track__bar"></div>
+                </div>
+            </section>
+
+            <section class="panel stage" aria-label="迴轉壽司遊戲舞台">
+                <div class="restaurant-sign">
+                    <span>本日吧檯</span>
+                    <span id="order-ticket">訂單：玉子燒 → 右側</span>
+                </div>
+                <div id="belt" class="belt" aria-live="polite">
+                    <div id="targets" class="targets" aria-hidden="true"></div>
+                    <div id="sushi-row" class="sushi-row"></div>
+                </div>
+                <p id="feedback" class="feedback" role="status">請調整下方 Flexbox 屬性後按「確認出餐」。</p>
+            </section>
+
+            <aside id="controls" class="panel controls" aria-labelledby="controls-title">
+                <div class="controls__header">
+                    <div>
+                        <p class="eyebrow">CSS 控制台</p>
+                        <h2 id="controls-title">調整輸送帶</h2>
+                    </div>
+                    <button id="reset-level" class="icon-button" type="button" aria-label="重設本關">↻</button>
+                </div>
+
+                <form id="flex-form" class="control-grid">
+                    <label>
+                        <span>flex-direction</span>
+                        <select id="flex-direction" name="flexDirection">
+                            <option value="row">row</option>
+                            <option value="row-reverse">row-reverse</option>
+                            <option value="column">column</option>
+                            <option value="column-reverse">column-reverse</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>justify-content</span>
+                        <select id="justify-content" name="justifyContent">
+                            <option value="flex-start">flex-start</option>
+                            <option value="center">center</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
+                            <option value="space-evenly">space-evenly</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>align-items</span>
+                        <select id="align-items" name="alignItems">
+                            <option value="flex-start">flex-start</option>
+                            <option value="center">center</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="stretch">stretch</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>flex-wrap</span>
+                        <select id="flex-wrap" name="flexWrap">
+                            <option value="nowrap">nowrap</option>
+                            <option value="wrap">wrap</option>
+                            <option value="wrap-reverse">wrap-reverse</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>gap</span>
+                        <select id="gap" name="gap">
+                            <option value="8px">8px</option>
+                            <option value="20px">20px</option>
+                            <option value="44px">44px</option>
+                            <option value="72px">72px</option>
+                        </select>
+                    </label>
+                </form>
+
+                <pre class="code-preview" aria-label="目前 CSS"><code id="code-preview"></code></pre>
+
+                <div class="control-actions">
+                    <button id="check-answer" class="button button--primary" type="button">確認出餐</button>
+                    <button id="next-level" class="button button--ghost" type="button" disabled>下一關</button>
+                </div>
+            </aside>
+        </main>
+
+        <section id="how-to-play" class="how-to-play" aria-labelledby="how-title">
+            <div>
+                <p class="eyebrow">How to play</p>
+                <h2 id="how-title">玩法說明</h2>
+            </div>
+            <ol class="rule-list">
+                <li><strong>讀訂單：</strong>每關會告訴你壽司要送到哪個位置。</li>
+                <li><strong>改屬性：</strong>在 CSS 控制台選擇 Flexbox 屬性，輸送帶會即時變化。</li>
+                <li><strong>確認：</strong>按下「確認出餐」，全部壽司對準半透明目標盤就過關。</li>
+            </ol>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
